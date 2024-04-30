@@ -1,0 +1,36 @@
+<div class="container-fluid" style="height: 100vh;">
+  <div class="d-flex justify-content-center align-items-center h-100">
+    <div class="text-center">
+      <% if instance.max_rounds == round.number %>
+        <h5>FINAL ROUND</h5>
+      <% else %>
+        <h5>ROUND <%= round.number %></h5>
+      <% end %>
+      <h5 class="mb-2">Question</h5>
+      <h3>Have you ever <%= game_content.content %>?</h3>
+
+      <div class="p-5 mt-5">
+        <div class="row justify-content-center">
+
+          <% @player_input = PlayerInput.new %>
+
+          <div class="col-6">
+            <%= simple_form_for([instance, round, @player_input]) do |f| %>
+              <%= hidden_field_tag :input_value, "Yes" %>
+              <%= f.submit "Yes I have", class:"btn btn-primary" %>
+            <% end %>
+          </div>
+
+          <div class="col-6">
+            <%= simple_form_for([instance, round, @player_input]) do |f| %>
+              <%= hidden_field_tag :input_value, "No" %>
+              <%= f.submit "No I haven't", class:"btn btn-warning" %>
+            <% end %>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>

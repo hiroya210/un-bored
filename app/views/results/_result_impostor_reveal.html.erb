@@ -1,0 +1,8 @@
+<div id="impostor-result" class="p-4 text-center">
+  <% if (highest_voted_player.nickname == impostor.nickname) %>
+    <p><strong style="color: #e42c63"><%= "#{impostor.nickname}"%></strong> was the IMPOSTOR</p>
+  <% else %>
+    <p><strong style="color: #52D75F;"><%="#{highest_voted_player.nickname}"%></strong> was NOT the impostor</p>
+    <p>It was <strong style="color:#e42c63;"><%= "#{impostor.nickname}"%></strong>!</p>
+  <% end %>
+</div>

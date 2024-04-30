@@ -1,0 +1,55 @@
+.sns-icons {
+  // Put a white background behind the SNS logos
+  .fa_with_bg{
+    position: relative;
+  }
+
+  .fa_with_bg::after{
+    position: absolute;
+    content: '';
+    background: #fff;
+    z-index: -1;
+    top: 8px;
+    left: 8px;
+    width: 30px;
+    height: 30px;
+  }
+
+  i {
+    font-size: 40px;
+    padding: 4px;
+    cursor: pointer;
+  }
+
+  #instagram {
+    color: $pink;
+  }
+
+  #twitter {
+    color: #1DA1F2;
+  }
+
+  #download {
+    color: $kiroi;
+  }
+
+  #facebook {
+    color: $mizu;
+  }
+
+  .fb_with_bg{
+    position: relative;
+  }
+
+  .fb_with_bg::after{
+    position: absolute;
+    content: '';
+    background: #fff;
+    z-index: -1;
+    top: 11px;
+    left: 8px;
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+  }
+}

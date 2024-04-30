@@ -1,0 +1,60 @@
+<div class="container-fluid pt-3" style="height: 100vh;">
+  <div class="text-center">
+    <% if instance.max_rounds == round.number %>
+      <h5 class="pt-3">FINAL ROUND</h5>
+      <h3 class="mb-3">Answers</h3>
+    <% else %>
+      <h5 class="mt-3">ROUND <%= round.number %></h5>
+      <h3 class="mb-3">Answers</h3>
+    <% end %>
+
+    <div class="py-2">
+      <p>Have you ever <%= game_content.content %>?</p>
+    </div>
+
+  <div class="row justify-content-center" style="height: 50vh; overflow: auto;">
+    <div id="results" class="col-lg-4 col-md-6 col-sm-12">
+      <div id="inputs" data-round-id="<%= round.id %>">
+        <!-- Player inputs @ app/views/player_inputs/_player_input.html.erb-->
+        <%= render 'player_inputs/player_input', round: round %>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex">
+    <p class="px-1">Submitted answers:</p>
+    <div id="player-input-count">
+        <%= render "show_player_inputs_count", round: round %>
+    </div><div class="px-1">/</div>
+    <div>
+      <%= render "instances/min_player_count", players: instance.players %>
+    </div>
+  </div>
+  <% if current_user.id == instance.user_id %>
+    <% if round.number == instance.max_rounds - 1 %>
+      <div class="py-4 row justify-content-center" id="host-buttons">
+        <%= simple_form_for([instance, Round.new]) do |f| %>
+          <div class="col-6">
+            <%= f.submit "Final Round", class:"btn btn-primary" %>
+          </div>
+        <% end %>
+      </div>
+
+    <% elsif round.number < instance.max_rounds %>
+      <div class="py-4 row justify-content-center" id="host-buttons">
+        <%= simple_form_for([instance, Round.new]) do |f| %>
+          <div class="col-6">
+            <%= f.submit "Next Round", class:"btn btn-primary" %>
+          </div>
+        <% end %>
+      </div>
+
+    <% else %>
+      <div class="py-4 row justify-content-center" id="host-buttons">
+        <%= form_with url: redirect_to_vote_instance_path(@instance), local: true, method: :get do |f| %>
+          <%= hidden_field_tag 'instance_id', @instance.id %>
+          <%= f.submit "Vote", class: "btn btn-warning" %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+</div>

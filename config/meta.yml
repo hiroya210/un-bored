@@ -1,0 +1,5 @@
+meta_product_name: "de.Bored"
+meta_title: "de.Bored the awkward silence!"
+meta_description: "Goodbye awkward silence!"
+meta_image: "cover.png" # should exist in `app/assets/images/`
+twitter_account: "@de_bored_"

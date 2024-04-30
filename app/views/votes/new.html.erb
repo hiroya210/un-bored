@@ -1,0 +1,16 @@
+<div class="container-fluid py-3" style="height: 100vh;">
+<h3 class="m-5 text-center">Who do you think was the <strong style="color: #e42c63; text-shadow: 1px 1px 2px black">Impostor</strong>?</h3>
+<div class="d-flex flex-wrap justify-content-around">
+  <% @players.each do |player| %>
+    <% if @current_user.id != player.user_id %> <!-- Cannot vote for yourself -->
+      <%= simple_form_for([@instance, @vote]) do |f| %>
+        <%= hidden_field_tag :voted_player, player.id %>
+        <div class="d-flex flex-column align-items-center">
+          <%= cl_image_tag player.user.avatar.key, class: "avatar" %>
+          <%= f.submit player.nickname, class:"btn btn-info my-2" %>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
+</div>

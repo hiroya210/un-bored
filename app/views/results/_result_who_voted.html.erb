@@ -1,0 +1,6 @@
+<% voters = Vote.where(instance: instance, voted_player_id: player.id) %>
+<% voters.each do |voter| %>
+  <div id="result-voted" class="mx-1 align-self-end">
+    <%= cl_image_tag voter.voter.user.avatar.key, size: "30x30" %>
+  </div>
+<% end %>

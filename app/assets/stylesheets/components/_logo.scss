@@ -1,0 +1,46 @@
+#homepage{
+  background-color: rgb(0, 17, 114);
+  height: 100vh;
+}
+
+
+#de-bored-logo{
+    margin: 0 auto;
+    width: 200px;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.path {
+    transform: translate(0, 10px);
+    stroke-dashoffset: 0;
+    stroke-dasharray: 500px;
+    animation: dash 4.5s linear;
+  }
+
+
+.de-bored-quote{
+    opacity: 0;
+}
+.de-bored-quote.active{
+    opacity: 1;
+}
+  
+  @keyframes dash {
+    0% {
+      stroke-dashoffset: 500px;
+    }
+    50% {
+      stroke-dashoffset: 400px;
+    }
+    100%{
+        stroke-dashoffset: 300px;
+        fill: rgba($color: #364ec9, $alpha: 0.7)
+    }
+  }
+
+  

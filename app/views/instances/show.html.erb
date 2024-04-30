@@ -1,0 +1,16 @@
+<div class="container-fluid">
+  <!-- Added data-player-name to see if player.username is being passed to JS-->
+  <div
+    id="instance"
+    data-instance-id="<%=@instance.id%>"
+    data-host-id="<%=@instance.user_id%>"
+    data-host-name="<%=@instance.user.username%>"
+    data-player-name="<%=@each_player_name%>"
+    data-player-id="<%=@each_player_id%>">
+  <!-- Waiting page -->
+  <%= render "show_waiting", players: @players, instance: @instance, game: @game, qr_code: @svg %>
+  </div>
+</div>
+
+
+<!--   200 PRs FOR THE WIN!   -->

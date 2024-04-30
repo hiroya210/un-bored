@@ -1,0 +1,9 @@
+<% if @round.number.zero? %>
+  <%# next line is needed for the hidden action-cable %>
+  <div id="inputs" data-round-id="<%= @round.id %>"></div>
+  <%= render 'show_impostor', current_player_is_impostor: @current_player_is_impostor %>
+<% elsif @round.phase == 1 %>
+  <%= render 'show_question', instance: @instance, round: @round, game_content: @game_content %>
+<% elsif @round.phase == 2 %>
+  <%= render 'show_answers', instance: @instance, round: @round, game_content: @game_content, current_user: @current_user %>
+<% end %>

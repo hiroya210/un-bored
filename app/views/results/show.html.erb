@@ -1,0 +1,84 @@
+<!-- Change the metadata for the Results page -->
+<% content_for :meta_title, "Results" %>
+<% content_for :meta_description, "My #{DEFAULT_META["meta_product_name"]} results" %>
+
+<!-- Find a way to change image with results image -->
+<%# content_for :meta_image, cl_image_path(@result.photo.path) %>
+
+<div class="d-none" id="loading">
+  <div class="circular-background">
+    <div class="spinner">
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid" style="100vh">
+  <div id="result" data-result-id="<%=@result.id%>">
+
+    <div id="overlay" class="d-flex justify-content-center align-items-center">
+      <div id="impostor-reveal" class="d-none">
+        <%= render "result_impostor_reveal", impostor: @impostor, vote_tally: @vote_tally, highest_voted_player: @highest_voted_player %>
+        <div class="text-center">
+          <button id="return-screen" class="btn btn-warning">Back to Results</button>
+        </div>
+      </div>
+    </div>
+
+      <div class="row">
+        <div class="col-12">
+          <h1 class="my-4 text-center">Game Results</h1>
+
+          <!-- Partial for Imposter reveal -->
+          <div class="d-flex justify-content-center align-items-center result-page my-2 text-center" style="height:10vh;">
+            <% if @total_voters == @total_votes %>
+              <% winner = @impostor.nickname %>
+              <div id="winner-section"  data-winner-id="<%=winner%>" data-announce-winner="<%=@announce_winner%>">
+                <h4 class="px-2">Revealing the impostor in:</h4><h4 id="countdown">4</h4>
+              </div>
+            <% else %>
+              <h4 class="px-2">Waiting for other players: <%= @total_votes %> / <%= @total_voters %></h4>
+            <% end %>
+          </div>
+
+          <!-- Partial for chart -->
+          <div id="chart" class="result-page my-2" style="height:40vh; overflow: auto;">
+            <%= render  "result_chart", players: @players %>
+          </div>
+
+          <!-- Partial for Stats -->
+          <div id="vote-stat px-2" class="result-page" style="height:30vh overflow: hidden;">
+            <%= render  "result_stat" %>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!-- This shouldn't get refreshed -->
+  <div id="result-footer" class="d-flex justify-content-center" style="height:5vh;" data-html2canvas-ignore>
+    <div class="row">
+      <div class="col-12">
+
+        <!-- Partial for SNS -->
+        <div class="sns-icons d-flex justify-content-center my-2">
+          <i class="fb_with_bg fab fa-facebook-square" id="facebook"></i>
+          <a href="" id="twitter"><i class="fa_with_bg fab fa-twitter-square"></i></a>
+          <i class="fa_with_bg fab fa-instagram-square" id="instagram"></i>
+        </div>
+
+        <!-- Continue button only for hos -->
+        <div class="d-flex justify-content-center" id="continue-btn">
+          <% if @current_user.id == @instance.user_id %>
+            <%# needed for creating a new instance %>
+            <%= simple_form_for Instance.new do |f| %>
+              <%# needed to get last_instance_id for creation of new instance %>
+              <%= hidden_field_tag 'last_instance_id', @instance.id %>
+              <%= f.submit "Play again", class: "btn btn-primary" %>
+            <% end %>
+          <% end %>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

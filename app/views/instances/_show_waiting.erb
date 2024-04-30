@@ -1,0 +1,88 @@
+<div class="waiting-navbar py-2 d-flex justify-content-between">
+  <% if current_user.present? && current_user.id == @instance.user_id %>
+    <div class="d-flex pt-3 pb-2">
+      <!-- Delete Instance button only for Host -->
+      <%= link_to "Back", instance_path(@instance), method: :delete, class: "btn btn-warning" %>
+    </div>
+  <% else %>
+    <div class="d-flex pt-3 pb-2">
+      <!-- Leave Instance button for players -->
+      <%= link_to "Leave lobby", instance_player_path(@instance, @players), method: :delete, class: "my-2 btn btn-warning" %>
+    </div>
+  <% end %>
+  <div>
+    <%= cl_image_tag current_user.avatar.key, class: "avatar", size: "55x55" %>
+  </div>
+</div>
+<div class="container-fluid">
+  <h3 class="my-1 text-center"><%= game.name %></h3>
+
+  <div class="row justify-content-around">
+    <div id="players" class="col-lg-6 col-md-4 col-sm-6 p-3 my-1" style="height: 360px; overflow: auto;">
+
+      <div id="player-count" class="d-flex justify-content-between">
+        <h5>Players:</h5>
+        <div class="d-flex">
+          <p>
+          <!-- Player Count @ app/views/instances/_min_player_count.erb -->
+            <div class="px-1" id="min-player-count" >
+              <%= render "min_player_count", players: players %>
+            </div>
+            / <!-- Please do not remove this =) -->
+          <!-- Player Count @ app/views/instances/_max_player_count.erb -->
+            <div class="px-1" id="max-player-count">
+              <%= render "max_player_count", instance: instance %>
+            </div>
+          </p>
+        </div>
+      </div>
+
+      <div id="player-list">
+      <!-- Player Count @ app/views/instances/_player_list.erb -->
+        <%= render  "player_list", players: players %>
+      </div>
+
+    </div>
+
+  <!-- Start Button only for Host -->
+  <div class="col-12 justify-content-center text-center pb-3 pt-2">
+    <div class="row justify-content-center">
+      <% if current_user.present? && current_user.id == @instance.user_id %>
+        <div class="col-10">
+          <% @round = Round.new %>
+          <%= simple_form_for([@instance, @round]) do |f| %>
+          <div>
+            <%= f.submit "Start Game", class:"btn btn-primary", style: "width: 70vw" %>
+          </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+    <div id="settings" class="col-lg-4 col-md-4 col-sm-6 p-3 my-1" style="height: fit-content">
+
+      <!-- Game Settings @ views/instances/_show_game_settings.html.erb-->
+      <div id="game-config">
+        <%= render "show_game_settings",instance: instance %>
+      </div>
+
+      <!-- From this line, only Host can see/use this -->
+      <% if current_user.present? && current_user.id == @instance.user_id %>
+        <div class="col-12 justify-content-center text-center py-3">
+          <div class="row">
+            <div class="col-6">
+              <%= render "qr_modal", instance: instance, qr_code: qr_code %>
+            </div>
+
+            <!-- Game Update @ app/views/instances/_update_modal.html.erb -->
+            <div class="col-6">
+              <%= render "update_modal", instance: instance %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+</div>

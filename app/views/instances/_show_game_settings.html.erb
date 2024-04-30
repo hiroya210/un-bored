@@ -1,0 +1,33 @@
+<h5 class="text-center">Game Settings</h5>
+
+<div class="players d-flex justify-content-between">
+  <div>
+    <p>Max Players:</p>
+  </div>
+  <div>
+    <%= instance.max_players %>
+  </div>
+</div>
+
+<div class="rounds d-flex justify-content-between">
+  <div>
+    <p>Rounds:</p>
+  </div>
+  <div>
+    <%= instance.max_rounds %>
+  </div>
+</div>
+
+<div class="imposter d-flex justify-content-between">
+  <p>Impostor:</p>
+  <div id="container-impostor-info">
+    <!-- Button and modal for impostor information -->
+    <%= render "impostor_info_modal" %>
+    <p>Yes</p>
+  </div>
+</div>
+
+<div class="d-flex justify-content-between">
+  <p>Passcode:</p>
+  <p><%= instance.passcode.upcase %></p>
+</div>

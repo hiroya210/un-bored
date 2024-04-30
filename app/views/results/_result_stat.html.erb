@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="col-12 mt-1">
+    <h4 style="text-align:center;">Results</h4>
+  </div>
+
+  <div class="col-12 d-flex justify-content-center">
+    <div id="most-yes-result" style="width:45%;">
+      <h5>Most <strong>Yes's</strong></h5>
+      <% unless @yes_players.empty? %>
+        <% @yes_players.each do |player| %>
+          <p><%= cl_image_tag player.user.avatar.key, size: "30x30" %><strong> <%= player.nickname %> </strong></p>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div id="most-no-result" style="width:45%;">
+      <h5>Most <strong> No's </strong></h5>
+      <% unless @no_players.empty? %>
+        <% @no_players.each do |player| %>
+        <p><%= cl_image_tag player.user.avatar.key, size: "30x30" %><strong> <%= player.nickname %> </strong></p>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

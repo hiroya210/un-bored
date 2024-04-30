@@ -1,0 +1,11 @@
+<div id="updateThis" >
+    <% players.each do |player| %>
+        <% user = User.find(player.user_id)%>
+        <div id="card" class="card shadow-sm py-2 px-3 my-1 rounded">
+          <div class="d-flex justify-content-start">
+            <%= cl_image_tag player.user.avatar.key, class: "avatar"%>
+            <p class="align-self-start mx-3" style="font-size: 1.5rem;"><%= user.nickname%></p>
+          </div>
+        </div>
+    <% end %>
+</div>

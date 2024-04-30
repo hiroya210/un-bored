@@ -1,0 +1,16 @@
+<a href="#nickname-modal" data-toggle="modal" data-target="#nickname-modal" style="text-decoration: none;">Change nickname</a>
+<div class="modal fade" id="nickname-modal" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div id="modal" class="modal-content m-auto" style="width: 250px;">
+      <div class="modal-body text-center">
+        <h5>Update nickname</h5>
+        <%= simple_form_for current_user, remote: true do |f| %>
+          <%= f.input :nickname, label: false %>
+          <%= f.submit "Use nickname", class: "btn btn-warning" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+

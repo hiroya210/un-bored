@@ -1,0 +1,38 @@
+<div class="container-fluid">
+  <div id="de-bored-games" style="height: 90vh;">
+  <div class="row justify-content-center">
+    <div class="col-lg-4 col-md-6 col-sm-12 text-center">
+
+      <h1 class="p-2">Games</h1>
+        <% @games.each do |game| %>
+          <!-- Card space for Front End Master Hiro -->
+          <div
+            id="game-index"
+            class="card d-flex flex-column align-items-center justify-content-center p-3 m-3 shadow"
+            style="background-image:linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.3)), url( <%= image_path game.image %> )"
+          >
+            <div>
+              <h3 id="game-name" ><%= game.name%></h3>
+            </div>
+                <!-- Buttons "Join" and "Create" -->
+            <% unless game.name == "Mad Libs" || game.name == "Spank the Bank!" %>
+              <div class="d-flex justify-content-around w-100">
+                <div>
+                  <%= link_to edit_nickname_host_path(game_id: game.id), method: :get do %>
+                    <div class="btn btn-primary">Create a lobby</div>
+                  <% end %>
+                </div>
+                <div>
+                  <%= render "components/modal" %>
+                </div>
+              </div>
+            <% else %>
+              <!-- Coming Soon! -->
+              <p>Coming Soon!</p>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

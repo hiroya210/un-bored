@@ -1,0 +1,16 @@
+<button id="modal-btn" type="button" class="btn btn-warning" data-toggle="modal" data-target="#join-modal">Join a lobby</button>
+<div class="modal fade" id="join-modal" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div id="modal" class="modal-content m-auto" style="width: 250px;">
+      <div class="modal-body">
+        <h5>Enter Passcode</h5>
+        <%= form_with url: join_instance_path, local: true, method: :get do |f| %>
+          <%= f.text_field :passcode, value: params[:passcode], autofocus: true %>
+          <div class="pt-3">
+            <%= f.submit "Join lobby", class: "btn btn-warning" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

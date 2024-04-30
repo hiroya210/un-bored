@@ -1,0 +1,19 @@
+.btn{
+  border-radius: 4px;
+  border: 2px solid rgb(0, 0, 0);
+  box-shadow: 0 5px 1px rgba(0, 0, 0, 0.726);
+  transform: translateY(-0.3em)
+}
+
+.btn:active{
+  transform: translateY(0);
+  border: 2px solid rgb(0, 0, 0);
+}
+
+.btn:hover {
+  border: 2px solid rgb(0, 0, 0);
+}
+
+.btn:disabled{
+  opacity: 1;
+}

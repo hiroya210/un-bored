@@ -1,0 +1,41 @@
+<div class="navbar navbar-collapse navbar-transparent mt-2">
+
+  <button class="btn btn-info" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <div class="">Menu</div>
+  </button>
+  <div class="d-flex align-items-center">
+    <span class="navbar-text px-3">
+    <div class="box2 sb12">Hi, <%= current_user.nickname %></div>
+    </span>
+
+    <div>
+      <%= cl_image_tag current_user.avatar.key, class: "avatar" %>
+    </div>
+  </div>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <% if current_user.guest? %>
+          <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+        <% else %>
+          <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-link" %>
+        <% end %>
+      </li>
+
+      <li class="nav-item">
+        <%= render "components/nickname_modal", locals: { current_user: current_user }, class: "nav-link" %>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="#">Support us</a>
+      </li>
+    </ul>
+  </div>
+
+  <!--
+    <button class="navbar-brand">
+
+    </button>
+  -->
+</div>

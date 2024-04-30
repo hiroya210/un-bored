@@ -1,0 +1,33 @@
+<div class="container-fluid" style="height: 100vh;">
+  <div class="d-flex justify-content-center align-items-center h-100">
+    <div class="text-center">
+        <%= cl_image_tag current_user.avatar.key, class: "avatar my-3", size: "100x100"%>
+      <% if current_player_is_impostor %>
+        <h3 class="notification">You are the <strong id="notification-impostor">IMPOSTOR</strong></h3>
+        <h5>Your job is to lie to your friends and to not get caught.</h5>
+      <% else %>
+        <h3 class="notification">You are <strong id="notification-non">NOT</strong> the impostor!</h3>
+        <h5>Good! Be honest with your friends and answer the questions sincerely.</h5>
+      <% end %>
+
+      <div class="d-none">
+        <% if current_user.id == @instance.user_id %>
+          <%= simple_form_for([@instance, Round.new]) do |f| %>
+            <%= hidden_field_tag 'current_round', @round.id %>
+            <%= f.submit "To the first question", class:"btn btn-primary" %>
+          <% end %>
+        <% end %>
+      </div>
+
+      <div class="py-5" style="height: 200px">
+        <div id="ready" class="d-none">
+          <h3>Are you Ready?</h3>
+        </div>
+        <div id="timer" class="d-none">
+          <h3>Game will start in:</h3>
+          <h3 id="time">5</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

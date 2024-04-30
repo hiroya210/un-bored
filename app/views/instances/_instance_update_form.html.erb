@@ -1,0 +1,29 @@
+<%= simple_form_for instance, remote: true do |f| %>
+  <div>
+    <div class="mb-4" style="border-bottom: 1px solid #033b4d">
+      <h5>Game Settings</h5>
+    </div>
+    <div class="d-flex justify-content-between">
+      <%= f.label :game, "Game" %>
+      <%= f.input :game, as: :select, collection: ["Have You Ever", "Picture Me", "Oukami"] ,label: false, default: "Have you ever" %>
+    </div>
+    <div class="d-flex justify-content-between">
+      <%= f.label :max_players, "Max Players" %>
+      <%= f.input :max_players, label: false, input_html: { min: @players.count, max: "10"}%>
+    </div>
+    <div class="d-flex justify-content-between">
+      <%= f.label :max_rounds, "Rounds" %>
+      <%= f.input :max_rounds,  label: false, input_html: { min: '2'} %>
+    </div>
+    <div class="d-flex justify-content-between pb-3">
+      <span id="label"> Impostor </span>
+        <label id="switch">
+        <input type="checkbox" checked>
+        <span id="slider"></span>
+      </label>
+    </div>
+    <div class="pt-3">
+        <%= f.submit "Update Settings", class:"btn btn-warning" %>
+    </div>
+  </div>
+<% end %>

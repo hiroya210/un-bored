@@ -1,0 +1,32 @@
+#modal, #settings-modal{
+    border-radius: 8px;
+}
+
+#modal {
+    border: 6px solid #035e7a;
+    border-style: groove;
+}
+#settings-modal, #share-modal{
+    border: 6px solid #293d96;
+    border-style: groove;
+}
+
+#share-modal {
+  position: relative;
+}
+
+.a2a_kit {
+  display: flex;
+  position: absolute;
+  top: 30px;
+  left: 30px;
+}
+
+#user_nickname {
+  text-align: center;
+}
+
+#passcode {
+  text-transform: uppercase;
+  text-align: center;
+}

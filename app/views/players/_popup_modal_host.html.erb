@@ -1,0 +1,17 @@
+<button id="popup-button" class="d-none" data-toggle="modal" data-target="#popup-host">Edit nickname</button>
+<div class="modal fade" id="popup-host" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" data-backdrop="static">
+  <div class="modal-dialog modal-dialog-centered">
+    <div id="modal" class="modal-content m-auto" style="width: 250px;">
+      <div class="modal-body text-center">
+        <h5>Update nickname</h5>
+        <%= form_with url: instances_path, method: :post do |f| %>
+          <%= f.text_field :nickname, value: current_user.nickname, id: "user_nickname" %>
+          <%= hidden_field_tag :game_id, @game_id %>
+          <div class="pt-3">
+            <%= f.submit "Use nickname", class: "btn btn-warning" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

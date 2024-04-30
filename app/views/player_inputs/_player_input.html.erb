@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-12">
+    <div id="updateThis" >
+      <% @round.player_inputs.each do |player_input| %>
+        <div id="input-<%= player_input.id %>">
+          <div class="<%=player_input.input_value == "Yes" ? "yes" : "no" %>-card shadow-sm p-3 rounded my-2">
+            <div class="d-flex justify-content-between align-items-center" style="font-size:20px">
+              <div class="d-flex">
+                <%= cl_image_tag player_input.player.user.avatar.key, class: "avatar" %>
+                <p class="mx-3"><%= player_input.player.user.nickname %></p>
+              </div>
+              <p class="m-0"><%= player_input.input_value %></p>
+            </div>
+          </div> 
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
